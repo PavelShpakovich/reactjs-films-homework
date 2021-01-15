@@ -7,14 +7,22 @@
 const merge = require('webpack-merge')
 const webpack = require('webpack')
 const base = require('./webpack.base.js')
+const path = require('path')
+const HtmlWebPackPlugin = require('html-webpack-plugin')
+const htmlPlugin = new HtmlWebPackPlugin({
+  template: './src/public/index.html',
+  filename: 'index.html',
+})
 
 module.exports = merge(base, {
   output: {
+    path: path.join(__dirname, '/build/'),
+    filename: '[name].js',
     publicPath: '/',
   },
   mode: 'development',
-  entry: ['react-hot-loader/patch', 'webpack-hot-middleware/client'],
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  entry: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', path.join(__dirname, '/src/index.js')],
+  plugins: [new webpack.HotModuleReplacementPlugin(), htmlPlugin],
   module: {
     rules: [
       {
@@ -32,15 +40,6 @@ module.exports = merge(base, {
           },
           'sass-loader',
         ],
-      },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[path][name].[ext]',
-          outputPath: 'images',
-          publicPath: 'assets',
-        },
       },
     ],
   },

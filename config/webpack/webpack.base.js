@@ -29,6 +29,15 @@ module.exports = {
           loader: 'babel-loader',
         },
       },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]',
+          outputPath: 'images',
+          publicPath: 'assets',
+        },
+      },
     ],
   },
   resolve: {
