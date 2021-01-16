@@ -8,7 +8,7 @@
 import { CHANGE_CATEGORY, CHANGE_GENRE } from '../actions/actionTypes'
 
 const initialState = {
-  chosenCategory: 0,
+  chosenCategory: '/popular',
   chosenGenre: 'Genre',
 }
 

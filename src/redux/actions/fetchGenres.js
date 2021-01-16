@@ -5,7 +5,7 @@
  * unless prior written permission is obtained from EPAM Systems, Inc
  */
 import { SEARCH_GENRES_SUCCESS, SEARCH_GENRES_ERROR } from './actionTypes'
-import { API_KEY } from '../../utils/constants'
+import { API_KEY, BASE_URL } from '../../constants/credentials'
 
 const fetchDataSuccess = (payload) => ({
   type: SEARCH_GENRES_SUCCESS,
@@ -19,7 +19,7 @@ const fetchDataError = (error) => ({
 
 const fetchGenresData = () => async (dispatch) => {
   try {
-    const responce = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`)
+    const responce = await fetch(`${BASE_URL}/3/genre/movie/list?api_key=${API_KEY}`)
     const genresList = await responce.json()
     dispatch(fetchDataSuccess(genresList.genres))
   } catch (error) {

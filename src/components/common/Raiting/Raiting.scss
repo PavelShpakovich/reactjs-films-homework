@@ -5,4 +5,17 @@
  * unless prior written permission is obtained from EPAM Systems, Inc
  */
 
-export { default } from './MovieList'
+.vote {
+  padding: 1px 7px;
+  color: #fff;
+  font-weight: bold;
+  line-height: 16px;
+  background-color: rgb(24, 183, 236);
+  border: 1px solid#fff;
+  border-radius: 5px;
+}
+
+.star {
+  color: rgb(24, 183, 236);
+  margin: 0 8px 0 0;
+}

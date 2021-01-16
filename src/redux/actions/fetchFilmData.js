@@ -5,8 +5,8 @@
  * unless prior written permission is obtained from EPAM Systems, Inc
  */
 
-import { SEARCH_DETAILS_SUCCESS, SEARCH_DETAILS_ERROR, CLOSE_MOVIE } from './actionTypes'
-import { API_KEY } from '../../utils/constants'
+import { SEARCH_DETAILS_SUCCESS, SEARCH_DETAILS_ERROR } from './actionTypes'
+import { API_KEY, BASE_URL } from '../../constants/credentials'
 
 const fetchDataSuccess = (payload) => ({
   type: SEARCH_DETAILS_SUCCESS,
@@ -18,16 +18,9 @@ const fetchDataError = (error) => ({
   payload: error,
 })
 
-export const closeMovie = () => ({
-  type: CLOSE_MOVIE,
-})
-
 export const fetchFilmData = (id) => async (dispatch) => {
   try {
-    const responce = await fetch(
-      // eslint-disable-next-line max-len
-      `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`,
-    )
+    const responce = await fetch(`${BASE_URL}/3/movie/${id}?api_key=${API_KEY}`)
     const film = await responce.json()
     dispatch(fetchDataSuccess(film))
   } catch (error) {

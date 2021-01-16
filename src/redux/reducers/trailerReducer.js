@@ -5,11 +5,10 @@
  * unless prior written permission is obtained from EPAM Systems, Inc
  */
 
-import { SEARCH_TRAILER_SUCCESS, SEARCH_TRAILER_ERROR, CLOSE_MODAL } from '../actions/actionTypes'
+import { SEARCH_TRAILER_SUCCESS, SEARCH_TRAILER_ERROR, RESET_TRAILER } from '../actions/actionTypes'
 
 const initialState = {
-  open: false,
-  trailer: {},
+  key: '',
   error: null,
 }
 
@@ -18,16 +17,14 @@ const trailerReducer = (state = initialState, action) => {
     case SEARCH_TRAILER_SUCCESS:
       return {
         ...state,
-        open: true,
-        trailer: action.payload,
+        key: action.payload,
       }
     case SEARCH_TRAILER_ERROR:
       return {
         ...state,
-        open: false,
         error: action.payload,
       }
-    case CLOSE_MODAL:
+    case RESET_TRAILER:
       return initialState
     default:
       return state

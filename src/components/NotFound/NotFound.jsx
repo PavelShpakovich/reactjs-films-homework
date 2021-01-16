@@ -5,4 +5,16 @@
  * unless prior written permission is obtained from EPAM Systems, Inc
  */
 
-export { default } from './Raiting'
+import React from 'react'
+import { Link } from 'react-router-dom'
+import styles from './NotFound.scss'
+
+export const NotFound = () => (
+  <div className={styles.container}>
+    <span className={styles.error}>Error 404</span>
+    <span className={styles.title}>Page not found</span>
+    <Link className={styles.link} to="/" data-testid="not-found-link">
+      Go Back
+    </Link>
+  </div>
+)

@@ -11,35 +11,39 @@ import { faTimesCircle } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useDispatch } from 'react-redux'
 import { fetchTrailerData } from '../../../../redux/actions/fetchTrailer'
-import Info from '../../../common/Info'
-import Button from '../../../common/Button'
+import { Info } from '../../../common/Info/Info'
+import { Button } from '../../../common/Button/Button'
 import styles from './MovieItemModal.scss'
 
-const MovieItemModal = ({ film, onModal }) => {
+export const MovieItemModal = ({ genreIds, id, overview, title, vote, onModal }) => {
   const dispatch = useDispatch()
   return (
     <div className={styles.modal}>
       <div className={styles.modal__window}>
         <FontAwesomeIcon onClick={onModal} className={styles.modal__cross} icon={faTimesCircle} />
-        <Info className={styles} film={film} />
-        <div className={styles.modal__description}>{film.overview}</div>
-        <Button
-          onClick={() => {
-            dispatch(fetchTrailerData(film.id))
-            onModal()
-          }}
-          className={styles.modal__button}
-        >
-          Watch Now
-        </Button>
+        <Info type="info-modal" genreIds={genreIds} title={title} vote={vote} />
+        <div className={styles.modal__description}>{overview}</div>
+        <div className={styles.modal__button}>
+          <Button
+            onClick={() => {
+              dispatch(fetchTrailerData(id))
+              onModal()
+            }}
+            type="primary"
+          >
+            Watch Now
+          </Button>
+        </div>
       </div>
     </div>
   )
 }
 
 MovieItemModal.propTypes = {
-  film: PropTypes.object.isRequired,
   onModal: PropTypes.func.isRequired,
+  vote: PropTypes.number.isRequired,
+  genreIds: PropTypes.arrayOf(PropTypes.number).isRequired,
+  overview: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
 }
-
-export default MovieItemModal

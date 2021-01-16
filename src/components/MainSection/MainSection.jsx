@@ -6,8 +6,8 @@
  */
 
 import React from 'react'
-import Navbar from '../Navbar'
-import MovieList from '../MovieList'
+import { Navbar } from '../Navbar/Navbar'
+import { MovieList } from '../MovieList/MovieList'
 import styles from './MainSection.scss'
 
 export const MainSection = () => (
@@ -16,5 +16,3 @@ export const MainSection = () => (
     <MovieList />
   </div>
 )
-
-export default MainSection

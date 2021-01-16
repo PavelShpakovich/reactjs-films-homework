@@ -5,18 +5,8 @@
  * unless prior written permission is obtained from EPAM Systems, Inc
  */
 
-import React from 'react'
-import { Link } from 'react-router-dom'
-import styles from './NotFound.scss'
-
-const NotFound = () => (
-  <div className={styles.container}>
-    <span className={styles.error}>Error 404</span>
-    <span className={styles.title}>Page not found</span>
-    <Link className={styles.link} to="/">
-      Go Back
-    </Link>
-  </div>
-)
-
-export default NotFound
+export const getTimeFormat = (time) => {
+  const hour = Math.floor(time / 60)
+  const min = time - hour * 60
+  return `${hour}h ${min}min`
+}

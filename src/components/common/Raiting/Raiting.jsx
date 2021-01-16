@@ -7,12 +7,37 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
+import { faStar as solidStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons'
+import { faStar as regStar } from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import styles from './Raiting.scss'
 
-const Raiting = ({ res, className }) => <div className={className}>{res.vote_average}</div>
-
-Raiting.propTypes = {
-  res: PropTypes.object.isRequired,
-  className: PropTypes.string.isRequired,
+export const Raiting = ({ withStars = false, vote }) => {
+  const getStars = () => {
+    const halfVote = Math.round(vote) / 2
+    const averageVote = Math.round(vote / 2)
+    return Array(5)
+      .fill()
+      .map((star, index) => {
+        const key = index
+        return halfVote === index + 0.5 ? (
+          <FontAwesomeIcon icon={faStarHalfAlt} key={key} />
+        ) : averageVote < index + 1 ? (
+          <FontAwesomeIcon icon={regStar} key={key} />
+        ) : (
+          <FontAwesomeIcon icon={solidStar} key={key} />
+        )
+      })
+  }
+  return (
+    <>
+      {withStars && <div className={styles.star}>{getStars()}</div>}
+      <div className={styles.vote}>{vote}</div>
+    </>
+  )
 }
 
-export default Raiting
+Raiting.propTypes = {
+  vote: PropTypes.number.isRequired,
+  withStars: PropTypes.bool,
+}

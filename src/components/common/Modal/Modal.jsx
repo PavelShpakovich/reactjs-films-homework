@@ -8,29 +8,28 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import ReactDOM from 'react-dom'
-import YouTube from 'react-youtube'
-import { closeModal } from '../../../redux/actions/fetchTrailer'
+import { resetTrailer } from '../../../redux/actions/fetchTrailer'
 import styles from './Modal.scss'
 
-const Modal = () => {
+export const Modal = () => {
   const dispatch = useDispatch()
-  const { open, trailer } = useSelector((state) => state.trailer)
-  const opts = {
-    playerVars: {
-      autoplay: 1,
-    },
-  }
+  const { key } = useSelector((state) => state.trailer)
   return (
-    open &&
+    key &&
     ReactDOM.createPortal(
-      <div onClick={() => dispatch(closeModal())} className={styles.modal}>
-        {(trailer.results.length && (
-          <YouTube className={styles.frame} videoId={trailer.results[0].key} opts={opts} />
+      <div onClick={() => dispatch(resetTrailer())} className={styles.modal}>
+        {(key.length && (
+          <iframe
+            className={styles.frame}
+            title="youtube"
+            src={`https://www.youtube.com/embed/${key}?autoplay=1`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
         )) || <div className={styles.not_found}>Trailer not found</div>}
       </div>,
       document.querySelector('#modal-root'),
     )
   )
 }
-
-export default Modal

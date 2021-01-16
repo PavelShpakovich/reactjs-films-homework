@@ -6,9 +6,8 @@ import { useHistory } from 'react-router-dom'
 import { changeCategory, changeGenre } from '../../../redux/actions/changeNavbar'
 import fetchMoviesData from '../../../redux/actions/fetchMovies'
 import styles from './Search.scss'
-import { closeMovie } from '../../../redux/actions/fetchFilmData'
 
-const Search = () => {
+export const Search = () => {
   const history = useHistory()
   const [value, setValue] = useState('')
   const dispatch = useDispatch()
@@ -18,14 +17,14 @@ const Search = () => {
     dispatch(fetchMoviesData({ search: `/search`, query: `&query=${value}` }))
     dispatch(changeCategory())
     dispatch(changeGenre('Genre'))
-    dispatch(closeMovie())
+    // dispatch(closeMovie())
     history.push(`/search?q=${value}`)
   }
   return (
     <div className={styles.search}>
       <form onSubmit={(event) => onSubmit(event)}>
         <input
-          onChange={(event) => setValue(event.target.value)}
+          onChange={(event) => setValue(event.target.value.trim())}
           className={styles.search__input}
           type="text"
           placeholder="Search"
@@ -35,5 +34,3 @@ const Search = () => {
     </div>
   )
 }
-
-export default Search

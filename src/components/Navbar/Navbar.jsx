@@ -10,14 +10,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import className from 'classnames'
 import { changeCategory } from '../../redux/actions/changeNavbar'
-import { navBtns } from '../../utils/constants'
+import { navBtns } from '../../constants/data'
+import { Select } from './components/Select/Select'
 import fetchMoviesData from '../../redux/actions/fetchMovies'
 import fetchGenresData from '../../redux/actions/fetchGenres'
-import Select from './components/Select'
-import getQueryCategory from '../../utils/getQueryCategory'
 import styles from './Navbar.scss'
 
-const Navbar = () => {
+export const Navbar = () => {
   const history = useHistory()
   const { genres } = useSelector((state) => state.genres)
   const { chosenCategory, chosenGenre } = useSelector((state) => state.navbar)
@@ -32,34 +31,31 @@ const Navbar = () => {
   return (
     <div className={styles.navbar}>
       <div className={styles.navbar__buttons}>
-        {navBtns.map((button, i) => {
-          const key = i
+        {Object.entries(navBtns).map(([name, path]) => {
           const classStyle = className(styles.navbar__buttons_button, {
-            [styles.active_button]: chosenCategory === key,
+            [styles.active_button]: chosenCategory === path,
           })
           return (
             <div
               className={classStyle}
               onClick={() => {
                 history.push('/')
-                dispatch(changeCategory(key))
+                dispatch(changeCategory(path))
                 dispatch(
                   fetchMoviesData({
-                    category: getQueryCategory(key),
+                    category: path,
                     genre: chosenGenre !== 'Genre' ? genreQuery : '',
                   }),
                 )
               }}
-              key={key}
+              key={path}
             >
-              {button}
+              {name}
             </div>
           )
         })}
       </div>
-      <Select getGenreQuery={getGenreQuery} categoryQuery={getQueryCategory(chosenCategory)} genres={genres} />
+      <Select getGenreQuery={getGenreQuery} categoryQuery={chosenCategory} genres={genres} />
     </div>
   )
 }
-
-export default Navbar

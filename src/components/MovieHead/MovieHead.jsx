@@ -8,36 +8,49 @@
 import { useParams } from 'react-router-dom'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import MovieHeadInfo from '../MovieHeadInfo'
-import Button from '../common/Button'
+import { MovieHeadInfo } from '../MovieHeadInfo/MovieHeadInfo'
+import { Button } from '../common/Button/Button'
 import { fetchTrailerData } from '../../redux/actions/fetchTrailer'
 import { fetchFilmData } from '../../redux/actions/fetchFilmData'
 import styles from './MovieHead.scss'
 
-const MovieHead = () => {
+export const MovieHead = () => {
   const dispatch = useDispatch()
-  const { open, film } = useSelector((state) => state.info)
+  const { film } = useSelector((state) => state.info)
   const [isInfo, setIsInfo] = useState(false)
   const onViewInfo = () => {
     setIsInfo((state) => !state)
   }
   const { id } = useParams()
-  useEffect(() => window.scrollTo(0, 64), [film])
+  useEffect(
+    () =>
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      }),
+    [film],
+  )
   useEffect(() => dispatch(fetchFilmData(id)), [id])
   return (
-    open && (
+    Object.keys(film).length && (
       <div
         className={styles.container}
         style={{ backgroundImage: `url('https://image.tmdb.org/t/p/original${film.poster_path}')` }}
       >
         <div className={styles.footer}>
-          <MovieHeadInfo film={film} />
+          <MovieHeadInfo
+            title={film.original_title}
+            genres={film.genres}
+            runtime={film.runtime}
+            vote={film.vote_average}
+            film={film}
+          />
           <div className={styles.footer__controls}>
             {isInfo && <p>{film.overview}</p>}
-            <Button className={styles.watch_button} onClick={() => dispatch(fetchTrailerData(film.id))}>
+            <Button type="primary" onClick={() => dispatch(fetchTrailerData(film.id))}>
               Watch Now
             </Button>
-            <Button className={styles.info_button} onClick={onViewInfo}>
+            <Button type="secondary" onClick={onViewInfo}>
               View Info
             </Button>
           </div>
@@ -46,4 +59,3 @@ const MovieHead = () => {
     )
   )
 }
-export default MovieHead

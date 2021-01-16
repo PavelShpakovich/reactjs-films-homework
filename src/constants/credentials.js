@@ -5,4 +5,5 @@
  * unless prior written permission is obtained from EPAM Systems, Inc
  */
 
-export { default } from './Footer'
+export const API_KEY = '091df5c39d576cf7fe0bed4dc18564f5'
+export const BASE_URL = 'https://api.themoviedb.org'

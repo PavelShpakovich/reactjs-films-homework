@@ -17,6 +17,10 @@ body {
   height: 100%;
 }
 
+body > div {
+  height: 100%;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -31,4 +35,20 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.main_container {
+  position: relative;
+  min-height: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.main_section {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(240, 240, 240);
 }

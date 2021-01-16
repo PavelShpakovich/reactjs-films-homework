@@ -7,10 +7,10 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Search from '../common/Search'
+import { Search } from '../common/Search/Search'
 import styles from './Header.scss'
 
-const Header = () => (
+export const Header = () => (
   <div className={styles.header}>
     <Link className={styles.header__title} to="/">
       FILMS
@@ -18,5 +18,3 @@ const Header = () => (
     <Search />
   </div>
 )
-
-export default Header

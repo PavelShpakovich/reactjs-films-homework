@@ -64,39 +64,3 @@
     display: flex;
   }
 }
-
-.info {
-  flex: 1.2;
-  cursor: pointer;
-
-  &__about {
-    padding: 25px 20px 10px 20px;
-    display: flex;
-    justify-content: space-between;
-
-    &_title {
-      font-size: 24px;
-      padding-right: 10px;
-      font-weight: bold;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    &_vote {
-      font-weight: bold;
-      color: rgb(24, 183, 236);
-      padding: 1px 7px;
-      border: 2px solid rgb(24, 183, 236);
-      border-radius: 5px;
-    }
-  }
-
-  &__genres {
-    padding: 0 20px;
-    color: rgb(24, 183, 236);
-    font-weight: 800;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-}

@@ -21,7 +21,7 @@ module.exports = merge(base, {
   entry: './src/index.js',
   mode: 'production',
   output: {
-    path: path.join(__dirname, '../../build'),
+    path: path.join(__dirname, '../../dist'),
     publicPath: '/',
     filename: '[name].[contenthash].js',
   },

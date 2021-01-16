@@ -9,7 +9,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styles from './Loading.scss'
 
-const Loading = ({ children }) => (
+export const Loading = ({ children }) => (
   <div className={styles.container}>
     <div className={styles.loading}>
       <div className={styles.lds_ellipsis}>
@@ -26,5 +26,3 @@ const Loading = ({ children }) => (
 Loading.propTypes = {
   children: PropTypes.node.isRequired,
 }
-
-export default Loading

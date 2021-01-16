@@ -16,12 +16,15 @@ const htmlPlugin = new HtmlWebPackPlugin({
 
 module.exports = merge(base, {
   output: {
-    path: path.join(__dirname, '/build/'),
+    path: path.join(__dirname, '/dist/'),
     filename: '[name].js',
     publicPath: '/',
   },
   mode: 'development',
-  entry: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000', path.join(__dirname, '/src/index.js')],
+  entry: [
+    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+    path.join(__dirname, '../../src/index.js'),
+  ],
   plugins: [new webpack.HotModuleReplacementPlugin(), htmlPlugin],
   module: {
     rules: [

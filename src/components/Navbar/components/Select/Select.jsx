@@ -15,7 +15,7 @@ import fetchMoviesData from '../../../../redux/actions/fetchMovies'
 import { changeGenre } from '../../../../redux/actions/changeNavbar'
 import styles from './Select.scss'
 
-const Select = ({ genres, categoryQuery, getGenreQuery }) => {
+export const Select = ({ genres, categoryQuery, getGenreQuery }) => {
   const { chosenGenre } = useSelector((state) => state.navbar)
   const dispatch = useDispatch()
   const [isSelect, setIsSelect] = useState(false)
@@ -56,9 +56,12 @@ const Select = ({ genres, categoryQuery, getGenreQuery }) => {
 }
 
 Select.propTypes = {
-  genres: PropTypes.arrayOf(PropTypes.object).isRequired,
+  genres: PropTypes.arrayOf(
+    PropTypes.PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+    }),
+  ).isRequired,
   categoryQuery: PropTypes.string.isRequired,
   getGenreQuery: PropTypes.func.isRequired,
 }
-
-export default Select

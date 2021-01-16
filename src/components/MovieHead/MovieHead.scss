@@ -7,8 +7,7 @@
 
 .container {
   width: 100%;
-  height: 100vh;
-  padding: 0 50px;
+  height: 640px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -19,6 +18,7 @@
 
 .footer {
   position: relative;
+  padding: 0 50px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

@@ -1,31 +1,35 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Stars from '../common/Stars'
-import Raiting from '../common/Raiting'
-import timeFormat from '../../utils/timeFormat'
+import { Raiting } from '../common/Raiting/Raiting'
+import { getTimeFormat } from '../../utils/getTimeFormat'
 import styles from './MovieHeadInfo.scss'
 
-const MovieHeadInfo = ({ film }) => (
+export const MovieHeadInfo = ({ vote, runtime, genres, title }) => (
   <div className={styles.description}>
-    <p className={styles.description__title}>{film.original_title}</p>
+    <p className={styles.description__title}>{title}</p>
     <div className={styles.description__genres}>
-      {film.genres.map((genre) => (
+      {genres.map((genre) => (
         <span className={styles.description__genres_name} key={genre.id}>
           {genre.name}
         </span>
       ))}
       <span className={styles.description__genres_name}>|</span>
-      <span className={styles.description__genres_name}>{timeFormat(film.runtime)}</span>
+      <span className={styles.description__genres_name}>{getTimeFormat(runtime)}</span>
     </div>
     <div className={styles.description__raiting}>
-      <Stars className={styles.description__raiting_star} res={film} />
-      <Raiting className={styles.description__raiting_vote} res={film} />
+      <Raiting className={styles.description__raiting_vote} withStars vote={vote} />
     </div>
   </div>
 )
 
 MovieHeadInfo.propTypes = {
-  film: PropTypes.object.isRequired,
+  vote: PropTypes.number.isRequired,
+  runtime: PropTypes.number.isRequired,
+  genres: PropTypes.arrayOf(
+    PropTypes.PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+    }),
+  ).isRequired,
+  title: PropTypes.string.isRequired,
 }
-
-export default MovieHeadInfo

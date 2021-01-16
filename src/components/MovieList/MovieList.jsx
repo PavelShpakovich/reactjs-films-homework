@@ -8,12 +8,12 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useHistory } from 'react-router-dom'
-import MovieItem from '../MovieItem'
-import Loading from '../common/Loading'
+import { MovieItem } from '../MovieItem/MovieItem'
+import { Loading } from '../common/Loading/Loading'
 import fetchMoviesData from '../../redux/actions/fetchMovies'
 import styles from './MovieList.scss'
 
-const MovieList = () => {
+export const MovieList = () => {
   const urlParams = new URLSearchParams(useLocation().search)
   const query = urlParams.get('q')
   const { pathname } = useLocation()
@@ -30,19 +30,23 @@ const MovieList = () => {
       dispatch(fetchMoviesData({ category: `/popular` }))
     }
   }, [query])
-
   return (
     <>
-      {movies.length === 0 && !isLoading && <div className={styles.not_found}>Movies not found</div>}
+      {!movies.length && !isLoading && <div className={styles.not_found}>Movies not found</div>}
       <div className={styles.container}>
         {isLoading && <Loading>LOADING</Loading>}
-        {movies.map((film, index) => {
-          const key = index
-          return <MovieItem film={film} key={key} />
-        })}
+        {movies.map((film) => (
+          <MovieItem
+            title={film.title}
+            vote={film.vote_average}
+            genreIds={film.genre_ids}
+            poster={film.poster_path}
+            id={film.id}
+            overview={film.overview}
+            key={film.id}
+          />
+        ))}
       </div>
     </>
   )
 }
-
-export default MovieList

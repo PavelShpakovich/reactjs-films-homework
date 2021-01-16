@@ -9,7 +9,7 @@ import { SEARCH_MOVIES_PENDING, SEARCH_MOVIES_SUCCESS, SEARCH_MOVIES_ERROR } fro
 const initialState = {
   movies: [],
   error: null,
-  isLoading: true,
+  isLoading: false,
 }
 
 const moviesReducer = (state = initialState, action) => {
@@ -29,6 +29,7 @@ const moviesReducer = (state = initialState, action) => {
       return {
         ...state,
         error: action.payload,
+        isLoading: false,
       }
     default:
       return state

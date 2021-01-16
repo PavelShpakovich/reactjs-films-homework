@@ -5,4 +5,18 @@
  * unless prior written permission is obtained from EPAM Systems, Inc
  */
 
-export { default } from './MainSection'
+import React from 'react'
+import { create } from 'react-test-renderer' // ES6
+import { BrowserRouter as Router } from 'react-router-dom'
+import { NotFound } from '../NotFound'
+
+describe('NotFound', () => {
+  it('Should render and match snapshot', () => {
+    const component = create(
+      <Router>
+        <NotFound />
+      </Router>,
+    )
+    expect(component.toJSON()).toMatchSnapshot()
+  })
+})
