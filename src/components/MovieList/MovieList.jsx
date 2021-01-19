@@ -5,9 +5,10 @@
  * unless prior written permission is obtained from EPAM Systems, Inc
  */
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useHistory } from 'react-router-dom'
+import InfiniteScroll from 'react-infinite-scroll-component'
 import { MovieItem } from '../MovieItem/MovieItem'
 import { Loading } from '../common/Loading/Loading'
 import fetchMoviesData from '../../redux/actions/fetchMovies'
@@ -20,32 +21,67 @@ export const MovieList = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const { movies, isLoading } = useSelector((state) => state.movies)
+  const { chosenCategory, chosenGenre } = useSelector((state) => state.navbar)
+  const [items, setItems] = useState([])
+  const [page, setPage] = useState(2)
+
   useEffect(() => {
+    setItems([...items, ...movies])
+  }, [movies])
+
+  useEffect(() => {
+    setItems([])
+    setPage(2)
     if (query) {
-      dispatch(fetchMoviesData({ search: `/search`, query: `&query=${query}` }))
+      dispatch(fetchMoviesData({ search: true, query }))
     } else if (pathname === '/search') {
-      history.push('/')
-      dispatch(fetchMoviesData({ category: `/popular` }))
+      history.push('/404')
     } else {
-      dispatch(fetchMoviesData({ category: `/popular` }))
+      dispatch(
+        fetchMoviesData({
+          category: chosenCategory || 'popular',
+          genre: chosenGenre.id || '',
+        }),
+      )
     }
-  }, [query])
+  }, [chosenCategory, chosenGenre, query])
+
   return (
     <>
-      {!movies.length && !isLoading && <div className={styles.not_found}>Movies not found</div>}
-      <div className={styles.container}>
+      {!items.length && !isLoading && <div className={styles.not_found}>Movies not found</div>}
+      <div>
         {isLoading && <Loading>LOADING</Loading>}
-        {movies.map((film) => (
-          <MovieItem
-            title={film.title}
-            vote={film.vote_average}
-            genreIds={film.genre_ids}
-            poster={film.poster_path}
-            id={film.id}
-            overview={film.overview}
-            key={film.id}
-          />
-        ))}
+        <InfiniteScroll
+          className={styles.container}
+          dataLength={items.length}
+          next={() => {
+            if (query) {
+              dispatch(fetchMoviesData({ search: true, query, page }))
+            } else {
+              dispatch(
+                fetchMoviesData({
+                  category: chosenCategory,
+                  page,
+                  genre: chosenGenre.id ? chosenGenre.id : '',
+                }),
+              )
+            }
+            setPage((state) => state + 1)
+          }}
+          hasMore
+        >
+          {items.map((film, i) => (
+            <MovieItem
+              title={film.title}
+              vote={film.vote_average}
+              genreIds={film.genre_ids}
+              poster={film.poster_path}
+              id={film.id}
+              overview={film.overview}
+              key={i}
+            />
+          ))}
+        </InfiniteScroll>
       </div>
     </>
   )

@@ -21,14 +21,22 @@ const fetchDataError = (error) => ({
   payload: error,
 })
 
-const fetchMoviesData = ({ search = '', category = '', genre = '', query = '' }) => async (dispatch) => {
-  try {
-    dispatch(fetchData())
-    const responce = await fetch(`${BASE_URL}/3${search}/movie${category}?api_key=${API_KEY}&page=1${genre}${query}`)
-    const movies = await responce.json()
-    dispatch(fetchDataSuccess(movies.results))
-  } catch (error) {
-    dispatch(fetchDataError(error))
+const fetchMoviesData = ({ search = false, category = '', genre = '', query = '', page = 1 }) => {
+  const genreUrl = genre ? `&with_genres=${genre}` : ''
+  const searchUrl = search ? `/search` : ''
+  const queryUrl = query ? `&query=${query}` : ''
+  const categoryUrl = category ? `/${category}` : ''
+  return async (dispatch) => {
+    try {
+      dispatch(fetchData())
+      const responce = await fetch(
+        `${BASE_URL}/3${searchUrl}/movie${categoryUrl}?api_key=${API_KEY}&page=${page}${genreUrl}${queryUrl}`,
+      )
+      const movies = await responce.json()
+      dispatch(fetchDataSuccess(movies.results))
+    } catch (error) {
+      dispatch(fetchDataError(error))
+    }
   }
 }
 

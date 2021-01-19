@@ -5,26 +5,21 @@
  * unless prior written permission is obtained from EPAM Systems, Inc
  */
 
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import className from 'classnames'
 import { changeCategory } from '../../redux/actions/changeNavbar'
 import { navBtns } from '../../constants/data'
 import { Select } from './components/Select/Select'
-import fetchMoviesData from '../../redux/actions/fetchMovies'
 import fetchGenresData from '../../redux/actions/fetchGenres'
 import styles from './Navbar.scss'
 
 export const Navbar = () => {
   const history = useHistory()
   const { genres } = useSelector((state) => state.genres)
-  const { chosenCategory, chosenGenre } = useSelector((state) => state.navbar)
-  const [genreQuery, setGenreQuery] = useState('')
+  const { chosenCategory } = useSelector((state) => state.navbar)
   const dispatch = useDispatch()
-  const getGenreQuery = (id) => {
-    setGenreQuery(`&with_genres=${id}`)
-  }
   useEffect(() => {
     dispatch(fetchGenresData())
   }, [])
@@ -41,12 +36,6 @@ export const Navbar = () => {
               onClick={() => {
                 history.push('/')
                 dispatch(changeCategory(path))
-                dispatch(
-                  fetchMoviesData({
-                    category: path,
-                    genre: chosenGenre !== 'Genre' ? genreQuery : '',
-                  }),
-                )
               }}
               key={path}
             >
@@ -55,7 +44,7 @@ export const Navbar = () => {
           )
         })}
       </div>
-      <Select getGenreQuery={getGenreQuery} categoryQuery={chosenCategory} genres={genres} />
+      <Select genres={genres} />
     </div>
   )
 }

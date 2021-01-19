@@ -8,8 +8,8 @@
 import { CHANGE_CATEGORY, CHANGE_GENRE } from '../actions/actionTypes'
 
 const initialState = {
-  chosenCategory: '/popular',
-  chosenGenre: 'Genre',
+  chosenCategory: 'popular',
+  chosenGenre: { name: 'Genre', id: null },
 }
 
 const navbarReducer = (state = initialState, action) => {

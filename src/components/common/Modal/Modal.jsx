@@ -13,12 +13,12 @@ import styles from './Modal.scss'
 
 export const Modal = () => {
   const dispatch = useDispatch()
-  const { key } = useSelector((state) => state.trailer)
+  const { key, error } = useSelector((state) => state.trailer)
   return (
-    key &&
+    (key || error) &&
     ReactDOM.createPortal(
       <div onClick={() => dispatch(resetTrailer())} className={styles.modal}>
-        {(key.length && (
+        {(key && (
           <iframe
             className={styles.frame}
             title="youtube"

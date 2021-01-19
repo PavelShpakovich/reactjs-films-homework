@@ -50,6 +50,6 @@ MovieItem.propTypes = {
   genreIds: PropTypes.arrayOf(PropTypes.number).isRequired,
   overview: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired,
+  poster: PropTypes.string,
   id: PropTypes.number.isRequired,
 }

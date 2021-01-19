@@ -31,11 +31,12 @@ export const MovieHead = () => {
     [film],
   )
   useEffect(() => dispatch(fetchFilmData(id)), [id])
+
   return (
-    Object.keys(film).length && (
+    !!Object.keys(film).length && (
       <div
         className={styles.container}
-        style={{ backgroundImage: `url('https://image.tmdb.org/t/p/original${film.poster_path}')` }}
+        style={{ backgroundImage: `url('https://image.tmdb.org/t/p/original${film.backdrop_path}')` }}
       >
         <div className={styles.footer}>
           <MovieHeadInfo

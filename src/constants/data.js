@@ -5,4 +5,4 @@
  * unless prior written permission is obtained from EPAM Systems, Inc
  */
 
-export const navBtns = { Trending: '/popular', 'Top Rated': '/top_rated', 'Coming Soon': '/upcoming' }
+export const navBtns = { Trending: 'popular', 'Top Rated': 'top_rated', 'Coming Soon': 'upcoming' }

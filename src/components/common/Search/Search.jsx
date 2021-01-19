@@ -4,7 +4,6 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useHistory } from 'react-router-dom'
 import { changeCategory, changeGenre } from '../../../redux/actions/changeNavbar'
-import fetchMoviesData from '../../../redux/actions/fetchMovies'
 import styles from './Search.scss'
 
 export const Search = () => {
@@ -14,10 +13,8 @@ export const Search = () => {
   const onSubmit = (event) => {
     event.preventDefault()
     if (!value) return
-    dispatch(fetchMoviesData({ search: `/search`, query: `&query=${value}` }))
     dispatch(changeCategory())
-    dispatch(changeGenre('Genre'))
-    // dispatch(closeMovie())
+    dispatch(changeGenre({ name: 'Genre' }))
     history.push(`/search?q=${value}`)
   }
   return (
