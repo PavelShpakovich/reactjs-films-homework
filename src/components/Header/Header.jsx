@@ -7,14 +7,19 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { Search } from '../common/Search/Search'
+import { changeCategory } from '../../redux/actions/changeNavbar'
 import styles from './Header.scss'
 
-export const Header = () => (
-  <div className={styles.header}>
-    <Link className={styles.header__title} to="/">
-      FILMS
-    </Link>
-    <Search />
-  </div>
-)
+export const Header = () => {
+  const dispatch = useDispatch()
+  return (
+    <div className={styles.header}>
+      <Link className={styles.header__title} onClick={() => dispatch(changeCategory('popular'))} to="/">
+        FILMS
+      </Link>
+      <Search />
+    </div>
+  )
+}

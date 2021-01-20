@@ -25,10 +25,13 @@
     &:hover {
       color: rgba(255, 255, 255, 0.8);
     }
+
+    @media (max-width: 599px) {
+      font-size: 34px;
+    }
   }
 
   @media (max-width: 599px) {
-    padding: 5px 0;
-    flex-direction: column;
+    padding: 5px 20px;
   }
 }

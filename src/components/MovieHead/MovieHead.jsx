@@ -51,7 +51,7 @@ export const MovieHead = () => {
             <Button type="primary" onClick={() => dispatch(fetchTrailerData(film.id))}>
               Watch Now
             </Button>
-            <Button type="secondary" onClick={onViewInfo}>
+            <Button type="info" onClick={onViewInfo}>
               View Info
             </Button>
           </div>

@@ -8,12 +8,12 @@
 import { SEARCH_DETAILS_SUCCESS, SEARCH_DETAILS_ERROR } from './actionTypes'
 import { API_KEY, BASE_URL } from '../../constants/credentials'
 
-const fetchDataSuccess = (payload) => ({
+export const fetchDataSuccess = (payload) => ({
   type: SEARCH_DETAILS_SUCCESS,
   payload,
 })
 
-const fetchDataError = (error) => ({
+export const fetchDataError = (error) => ({
   type: SEARCH_DETAILS_ERROR,
   payload: error,
 })

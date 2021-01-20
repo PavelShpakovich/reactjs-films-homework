@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieList Should render and match snapshot 1`] = `
+Array [
+  <div
+    className="not_found"
+  >
+    Movies not found
+  </div>,
+  <div>
+    <div
+      className="infinite-scroll-component__outerdiv"
+      style={Object {}}
+    >
+      <div
+        className="infinite-scroll-component container"
+        style={
+          Object {
+            "WebkitOverflowScrolling": "touch",
+            "height": "auto",
+            "overflow": "auto",
+          }
+        }
+      />
+    </div>
+  </div>,
+  <div
+    className="scroll_to_top"
+  />,
+]
+`;

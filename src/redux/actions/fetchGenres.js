@@ -7,17 +7,17 @@
 import { SEARCH_GENRES_SUCCESS, SEARCH_GENRES_ERROR } from './actionTypes'
 import { API_KEY, BASE_URL } from '../../constants/credentials'
 
-const fetchDataSuccess = (payload) => ({
+export const fetchDataSuccess = (payload) => ({
   type: SEARCH_GENRES_SUCCESS,
   payload,
 })
 
-const fetchDataError = (error) => ({
+export const fetchDataError = (error) => ({
   type: SEARCH_GENRES_ERROR,
   payload: error,
 })
 
-const fetchGenresData = () => async (dispatch) => {
+export const fetchGenresData = () => async (dispatch) => {
   try {
     const responce = await fetch(`${BASE_URL}/3/genre/movie/list?api_key=${API_KEY}`)
     const genresList = await responce.json()
@@ -26,5 +26,3 @@ const fetchGenresData = () => async (dispatch) => {
     dispatch(fetchDataError(error))
   }
 }
-
-export default fetchGenresData

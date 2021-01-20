@@ -23,7 +23,7 @@ export const Select = ({ genres }) => {
   })
   return (
     <div className={styles.select}>
-      <div onClick={() => setIsSelect((state) => !state)} className={styles.select__button}>
+      <div onClick={() => setIsSelect((state) => !state)} className={styles.select__button} testid="1">
         <span className={styles.select__button_text}>{chosenGenre.name}</span>
         <FontAwesomeIcon className={arrowClass} icon={faChevronCircleDown} />
       </div>
@@ -41,6 +41,7 @@ export const Select = ({ genres }) => {
                 }}
                 className={classStyle}
                 key={genre.id}
+                testid="2"
               >
                 {genre.name}
               </div>

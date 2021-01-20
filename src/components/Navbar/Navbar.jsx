@@ -12,7 +12,7 @@ import className from 'classnames'
 import { changeCategory } from '../../redux/actions/changeNavbar'
 import { navBtns } from '../../constants/data'
 import { Select } from './components/Select/Select'
-import fetchGenresData from '../../redux/actions/fetchGenres'
+import { fetchGenresData } from '../../redux/actions/fetchGenres'
 import styles from './Navbar.scss'
 
 export const Navbar = () => {
@@ -38,6 +38,7 @@ export const Navbar = () => {
                 dispatch(changeCategory(path))
               }}
               key={path}
+              testid="test"
             >
               {name}
             </div>

@@ -17,7 +17,7 @@ body {
   height: 100%;
 }
 
-body > div {
+body > div:nth-of-type(1) {
   height: 100%;
 }
 

@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieItem Should render and match snapshot, go to route details, dispatch trailer data 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="poster"
+    style={
+      Object {
+        "backgroundImage": "url(https://image.tmdb.org/t/p/originalposter)",
+      }
+    }
+  >
+    <div
+      className="poster__hover"
+    >
+      <svg
+        aria-hidden="true"
+        className="svg-inline--fa fa-play-circle fa-w-16 poster__hover_play"
+        data-icon="play-circle"
+        data-prefix="fas"
+        focusable="false"
+        onClick={[Function]}
+        role="img"
+        style={Object {}}
+        viewBox="0 0 512 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm115.7 272l-176 101c-15.8 8.8-35.7-2.5-35.7-21V152c0-18.4 19.8-29.8 35.7-21l176 107c16.4 9.2 16.4 32.9 0 42z"
+          fill="currentColor"
+          style={Object {}}
+        />
+      </svg>
+      <span
+        className="poster__hover_text"
+      >
+        Watch Now
+      </span>
+      <button
+        className="button secondary"
+        onClick={[Function]}
+      >
+        View Info
+      </button>
+    </div>
+  </div>
+  <div
+    className="info"
+    onClick={[Function]}
+  >
+    <div
+      className="info__about"
+    >
+      <div
+        className="info__about_title"
+      >
+        title
+      </div>
+      <div
+        className="vote"
+      >
+        5
+      </div>
+    </div>
+    <div
+      className="info__genres"
+    >
+      
+    </div>
+  </div>
+</div>
+`;

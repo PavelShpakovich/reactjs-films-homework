@@ -7,6 +7,7 @@ export const Button = ({ type = 'primary', onClick, children }) => {
   const classList = className(styles.button, {
     [styles.primary]: type === 'primary',
     [styles.secondary]: type === 'secondary',
+    [styles.info]: type === 'info',
   })
   return (
     <button className={classList} onClick={onClick}>
@@ -16,7 +17,7 @@ export const Button = ({ type = 'primary', onClick, children }) => {
 }
 
 Button.propTypes = {
-  type: PropTypes.string.isRequired,
+  type: PropTypes.string,
   onClick: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
 }

@@ -16,6 +16,7 @@ const movieInfoReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEARCH_DETAILS_SUCCESS:
       return {
+        ...state,
         film: action.payload,
       }
     case SEARCH_DETAILS_ERROR:

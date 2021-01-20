@@ -31,4 +31,8 @@
       color: #0aaee4;
     }
   }
+
+  @media (max-width: 599px) {
+    max-width: 160px;
+  }
 }

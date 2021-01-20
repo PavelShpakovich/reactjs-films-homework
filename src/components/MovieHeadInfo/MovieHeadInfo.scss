@@ -7,11 +7,14 @@
     font-weight: 800;
 
     @media (max-width: 599px) {
-      font-size: 32px;
+      font-size: 28px;
     }
   }
 
   &__genres {
+    display: flex;
+    flex-wrap: wrap;
+
     &_name {
       margin: 0 14px 0 0;
       font-size: 16px;

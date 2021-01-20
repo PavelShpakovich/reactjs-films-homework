@@ -16,7 +16,7 @@
   background-size: cover;
 
   @media (max-width: 599px) {
-    height: 420px;
+    height: 320px;
   }
 }
 
@@ -28,32 +28,31 @@
   justify-content: space-between;
   margin: 0 0 30px 0;
 
+  @media (max-width: 599px) {
+    padding: 0 20px;
+  }
+
   &__controls {
     display: flex;
     margin-top: 20px;
     align-items: flex-end;
 
-    p {
+    & p {
       position: absolute;
-      top: -110px;
+      top: -120px;
       color: #fff;
       width: 300px;
       height: 120px;
       padding: 5px 10px;
       background-color: rgba($color: #000, $alpha: 0.6);
       overflow-y: auto;
-      animation: info-transform 0.4s linear;
+
+      @media (max-width: 599px) {
+        width: 280px;
+        height: 100px;
+        top: -100px;
+      }
     }
-  }
-}
-
-@keyframes info-transform {
-  0% {
-    transform: translateX(300px);
-  }
-
-  100% {
-    transform: translateX(0);
   }
 }
 

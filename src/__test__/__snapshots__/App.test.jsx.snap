@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App Should render and match snapshot 1`] = `
+<div
+  className="main_container"
+>
+  <div
+    className="header"
+  >
+    <a
+      className="header__title"
+      href="/"
+      onClick={[Function]}
+    >
+      FILMS
+    </a>
+    <div
+      className="search"
+    >
+      <form
+        onSubmit={[Function]}
+      >
+        <input
+          className="search__input"
+          onChange={[Function]}
+          placeholder="Search"
+          type="text"
+        />
+      </form>
+      <svg
+        aria-hidden="true"
+        className="svg-inline--fa fa-search fa-w-16 search__icon"
+        data-icon="search"
+        data-prefix="fas"
+        focusable="false"
+        onClick={[Function]}
+        role="img"
+        style={Object {}}
+        viewBox="0 0 512 512"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
+          fill="currentColor"
+          style={Object {}}
+        />
+      </svg>
+    </div>
+  </div>
+  <div
+    className="main_section"
+  >
+    <div
+      className="container"
+    >
+      <div
+        className="navbar"
+      >
+        <div
+          className="navbar__buttons"
+        >
+          <div
+            className="navbar__buttons_button active_button"
+            onClick={[Function]}
+            testid="test"
+          >
+            Trending
+          </div>
+          <div
+            className="navbar__buttons_button"
+            onClick={[Function]}
+            testid="test"
+          >
+            Top Rated
+          </div>
+          <div
+            className="navbar__buttons_button"
+            onClick={[Function]}
+            testid="test"
+          >
+            Upcoming
+          </div>
+        </div>
+        <div
+          className="select"
+        >
+          <div
+            className="select__button"
+            onClick={[Function]}
+            testid="1"
+          >
+            <span
+              className="select__button_text"
+            >
+              Genre
+            </span>
+            <svg
+              aria-hidden="true"
+              className="svg-inline--fa fa-chevron-circle-down fa-w-16 select__button_arrow"
+              data-icon="chevron-circle-down"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              style={Object {}}
+              viewBox="0 0 512 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zM273 369.9l135.5-135.5c9.4-9.4 9.4-24.6 0-33.9l-17-17c-9.4-9.4-24.6-9.4-33.9 0L256 285.1 154.4 183.5c-9.4-9.4-24.6-9.4-33.9 0l-17 17c-9.4 9.4-9.4 24.6 0 33.9L239 369.9c9.4 9.4 24.6 9.4 34 0z"
+                fill="currentColor"
+                style={Object {}}
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div
+        className="not_found"
+      >
+        Movies not found
+      </div>
+      <div>
+        <div
+          className="infinite-scroll-component__outerdiv"
+          style={Object {}}
+        >
+          <div
+            className="infinite-scroll-component container"
+            style={
+              Object {
+                "WebkitOverflowScrolling": "touch",
+                "height": "auto",
+                "overflow": "auto",
+              }
+            }
+          />
+        </div>
+      </div>
+      <div
+        className="scroll_to_top"
+      />
+    </div>
+  </div>
+  <div
+    className="container"
+  >
+    <span
+      className="title"
+    >
+      FILMS
+    </span>
+    <span
+      className="copyright"
+    >
+      Copyright © 2020 FILMS.
+    </span>
+    <span
+      className="copyright"
+    >
+      PAVEL DUBINA
+    </span>
+  </div>
+</div>
+`;

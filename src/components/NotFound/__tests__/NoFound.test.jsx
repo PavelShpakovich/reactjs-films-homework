@@ -6,7 +6,7 @@
  */
 
 import React from 'react'
-import { create } from 'react-test-renderer' // ES6
+import { create } from 'react-test-renderer'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { NotFound } from '../NotFound'
 

@@ -11,6 +11,7 @@ import { useLocation, useHistory } from 'react-router-dom'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { MovieItem } from '../MovieItem/MovieItem'
 import { Loading } from '../common/Loading/Loading'
+import { ScrollToTop } from '../common/ScrollToTop/ScrollToTop'
 import fetchMoviesData from '../../redux/actions/fetchMovies'
 import styles from './MovieList.scss'
 
@@ -50,7 +51,7 @@ export const MovieList = () => {
     <>
       {!items.length && !isLoading && <div className={styles.not_found}>Movies not found</div>}
       <div>
-        {isLoading && <Loading>LOADING</Loading>}
+        {!items.length && isLoading && <Loading>LOADING</Loading>}
         <InfiniteScroll
           className={styles.container}
           dataLength={items.length}
@@ -83,6 +84,7 @@ export const MovieList = () => {
           ))}
         </InfiniteScroll>
       </div>
+      <ScrollToTop />
     </>
   )
 }
