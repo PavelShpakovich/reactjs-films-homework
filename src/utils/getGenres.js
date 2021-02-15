@@ -5,10 +5,8 @@
  * unless prior written permission is obtained from EPAM Systems, Inc
  */
 
-const getGenres = (ids, genres) =>
+export const getGenres = (ids, genres) =>
   genres
     .filter((genre) => ids.includes(genre.id))
     .map((genre) => genre.name)
     .join(', ')
-
-export default getGenres

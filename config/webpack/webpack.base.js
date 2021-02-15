@@ -15,7 +15,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
 
 module.exports = {
   output: {
-    path: path.join(__dirname, '../../build'),
+    path: path.join(__dirname, '../../dist'),
     filename: '[name].js',
   },
   entry: ['./src/index.js'],
@@ -27,6 +27,15 @@ module.exports = {
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.(png|svg|jpg|gif)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]',
+          outputPath: 'images',
+          publicPath: 'assets',
         },
       },
     ],

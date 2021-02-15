@@ -5,7 +5,7 @@
  * unless prior written permission is obtained from EPAM Systems, Inc
  */
 import { SEARCH_MOVIES_PENDING, SEARCH_MOVIES_SUCCESS, SEARCH_MOVIES_ERROR } from './actionTypes'
-import { API_KEY } from '../../utils/constants'
+import { API_KEY, BASE_URL } from '../../constants/credentials'
 
 const fetchData = () => ({
   type: SEARCH_MOVIES_PENDING,
@@ -21,17 +21,22 @@ const fetchDataError = (error) => ({
   payload: error,
 })
 
-const fetchMoviesData = ({ search = '', category = '', genre = '', query = '' }) => async (dispatch) => {
-  try {
-    dispatch(fetchData())
-    const responce = await fetch(
-      // eslint-disable-next-line max-len
-      `https://api.themoviedb.org/3${search}/movie${category}?api_key=${API_KEY}&language=en-US&page=1${genre}${query}`,
-    )
-    const movies = await responce.json()
-    dispatch(fetchDataSuccess(movies.results))
-  } catch (error) {
-    dispatch(fetchDataError(error))
+const fetchMoviesData = ({ search = false, category = '', genre = '', query = '', page = 1 }) => {
+  const genreUrl = genre ? `&with_genres=${genre}` : ''
+  const searchUrl = search ? `/search` : ''
+  const queryUrl = query ? `&query=${query}` : ''
+  const categoryUrl = category ? `/${category}` : ''
+  return async (dispatch) => {
+    try {
+      dispatch(fetchData())
+      const responce = await fetch(
+        `${BASE_URL}/3${searchUrl}/movie${categoryUrl}?api_key=${API_KEY}&page=${page}${genreUrl}${queryUrl}`,
+      )
+      const movies = await responce.json()
+      dispatch(fetchDataSuccess(movies.results))
+    } catch (error) {
+      dispatch(fetchDataError(error))
+    }
   }
 }
 

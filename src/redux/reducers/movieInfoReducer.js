@@ -5,10 +5,9 @@
  * unless prior written permission is obtained from EPAM Systems, Inc
  */
 
-import { SEARCH_DETAILS_SUCCESS, SEARCH_DETAILS_ERROR, CLOSE_MOVIE } from '../actions/actionTypes'
+import { SEARCH_DETAILS_SUCCESS, SEARCH_DETAILS_ERROR } from '../actions/actionTypes'
 
 const initialState = {
-  open: false,
   film: {},
   error: null,
 }
@@ -17,17 +16,14 @@ const movieInfoReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEARCH_DETAILS_SUCCESS:
       return {
-        open: true,
+        ...state,
         film: action.payload,
       }
     case SEARCH_DETAILS_ERROR:
       return {
         ...state,
-        open: false,
         error: action.payload,
       }
-    case CLOSE_MOVIE:
-      return initialState
     default:
       return state
   }

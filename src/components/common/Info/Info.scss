@@ -1,0 +1,80 @@
+/*
+ * Copyright © 2020 EPAM Systems, Inc. All Rights Reserved. All information contained herein is, and remains the
+ * property of EPAM Systems, Inc. and/or its suppliers and is protected by international intellectual
+ * property law. Dissemination of this information or reproduction of this material is strictly forbidden,
+ * unless prior written permission is obtained from EPAM Systems, Inc
+ */
+
+.info {
+  flex: 1.2;
+  cursor: pointer;
+
+  &__about {
+    padding: 25px 20px 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &_title {
+      font-size: 24px;
+      padding-right: 10px;
+      font-weight: bold;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    &_vote {
+      font-weight: bold;
+      color: rgb(24, 183, 236);
+      padding: 1px 7px;
+      border: 2px solid rgb(24, 183, 236);
+      border-radius: 5px;
+    }
+  }
+
+  &__genres {
+    padding: 0 20px;
+    color: rgb(24, 183, 236);
+    font-weight: 800;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.info_modal {
+  flex: 1;
+  width: 100%;
+
+  &__about {
+    padding: 30px 0 5px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &_title {
+      color: #fff;
+      font-size: 24px;
+      padding-right: 10px;
+      font-weight: bold;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    &_vote {
+      font-weight: bold;
+      color: rgb(24, 183, 236);
+      padding: 1px 7px;
+      border: 2px solid rgb(24, 183, 236);
+      border-radius: 5px;
+    }
+  }
+
+  &__genres {
+    color: rgb(24, 183, 236);
+    font-weight: 800;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

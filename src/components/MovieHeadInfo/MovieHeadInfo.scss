@@ -3,16 +3,29 @@
     font-size: 50px;
     letter-spacing: 2px;
     color: #fff;
+    text-shadow: 0 0 5px rgb(24, 183, 236);
     font-weight: 800;
+
+    @media (max-width: 599px) {
+      font-size: 28px;
+    }
   }
 
   &__genres {
+    display: flex;
+    flex-wrap: wrap;
+
     &_name {
       margin: 0 14px 0 0;
       font-size: 16px;
       letter-spacing: 1px;
+      text-shadow: 0 0 5px rgb(24, 183, 236);
       color: #fff;
       font-weight: 800;
+
+      @media (max-width: 599px) {
+        font-size: 14px;
+      }
     }
   }
 
@@ -20,17 +33,5 @@
     display: flex;
     align-items: center;
     margin: 20px 0 0 0;
-
-    &_star {
-      color: rgb(24, 183, 236);
-      margin: 0 8px 0 0;
-    }
-
-    &_vote {
-      color: #fff;
-      padding: 1px 7px;
-      border: 1px solid rgb(24, 183, 236);
-      border-radius: 5px;
-    }
   }
 }

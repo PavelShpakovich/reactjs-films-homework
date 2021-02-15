@@ -15,18 +15,11 @@
     display: inline-flex;
 
     @media (max-width: 599px) {
-      flex-direction: column;
       align-items: center;
       width: 100%;
     }
 
     &_button {
-      @media (max-width: 599px) {
-        margin: 0;
-        width: 100%;
-        text-align: center;
-      }
-
       margin: 0 20px 0 0;
       padding: 0;
       width: fit-content;
@@ -35,6 +28,18 @@
       background-color: rgb(240, 240, 240);
       border-bottom: 2px solid transparent;
       cursor: pointer;
+
+      @media (max-width: 599px) {
+        margin: 0 2px;
+        height: 32px;
+        width: 33%;
+        font-size: 15px;
+        line-height: 32px;
+        text-align: center;
+        border-radius: 10px;
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.15);
+      }
     }
   }
 }

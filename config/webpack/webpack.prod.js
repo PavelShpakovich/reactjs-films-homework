@@ -8,14 +8,24 @@ const merge = require('webpack-merge')
 const TercerWebpackPlugin = require('terser-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebPackPlugin = require('html-webpack-plugin')
 const base = require('./webpack.base.js')
+const path = require('path')
+const htmlPlugin = new HtmlWebPackPlugin({
+  template: 'src/public/index.html',
+  inject: 'body',
+  filename: 'index.html',
+})
 
 module.exports = merge(base, {
+  entry: './src/index.js',
   mode: 'production',
   output: {
+    path: path.join(__dirname, '../../dist'),
+    publicPath: '/',
     filename: '[name].[contenthash].js',
   },
-  plugins: [new CleanWebpackPlugin(), new MiniCssExtractPlugin()],
+  plugins: [new CleanWebpackPlugin(), new MiniCssExtractPlugin(), htmlPlugin],
   optimization: {
     minimizer: [new TercerWebpackPlugin()],
   },
@@ -35,15 +45,6 @@ module.exports = merge(base, {
           },
           'sass-loader',
         ],
-      },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        loader: 'file-loader',
-        options: {
-          name: '[path][name].[ext]',
-          outputPath: 'images',
-          publicPath: 'assets',
-        },
       },
     ],
   },

@@ -1,1 +1,1 @@
-"ignorePatterns": ["build/*"]
+"ignorePatterns": ["dist/*"]

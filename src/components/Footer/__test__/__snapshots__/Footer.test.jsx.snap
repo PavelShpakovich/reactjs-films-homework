@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer Should render and match snapshot 1`] = `
+<div
+  className="container"
+>
+  <span
+    className="title"
+  >
+    FILMS
+  </span>
+  <span
+    className="copyright"
+  >
+    Copyright © 2020 FILMS.
+  </span>
+  <span
+    className="copyright"
+  >
+    PAVEL DUBINA
+  </span>
+</div>
+`;

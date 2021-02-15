@@ -8,26 +8,50 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useSelector } from 'react-redux'
-import getGenres from '../../../utils/getGenres'
-import Raiting from '../Raiting'
+import className from 'classnames'
+import { getGenres } from '../../../utils/getGenres'
+import { Raiting } from '../Raiting/Raiting'
+import styles from './Info.scss'
 
-const Info = ({ film, className, onClick }) => {
+export const Info = ({ genreIds, title, vote, onClick, type }) => {
   const { genres } = useSelector((state) => state.genres)
   return (
-    <div onClick={onClick} className={className.info}>
-      <div className={className.info__about}>
-        <div className={className.info__about_title}>{film.title}</div>
-        <Raiting className={className.info__about_vote} res={film} />
+    <div
+      onClick={onClick}
+      className={className({ [styles.info]: type === 'info', [styles.info_modal]: type === 'info-modal' })}
+    >
+      <div
+        className={className({
+          [styles.info__about]: type === 'info',
+          [styles.info_modal__about]: type === 'info-modal',
+        })}
+      >
+        <div
+          className={className({
+            [styles.info__about_title]: type === 'info',
+            [styles.info_modal__about_title]: type === 'info-modal',
+          })}
+        >
+          {title}
+        </div>
+        <Raiting vote={vote} />
       </div>
-      <div className={className.info__genres}>{getGenres(film.genre_ids, genres)}</div>
+      <div
+        className={className({
+          [styles.info__genres]: type === 'info',
+          [styles.info_modal__genres]: type === 'info-modal',
+        })}
+      >
+        {getGenres(genreIds, genres)}
+      </div>
     </div>
   )
 }
 
 Info.propTypes = {
-  film: PropTypes.object.isRequired,
-  className: PropTypes.object.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
+  type: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  vote: PropTypes.number.isRequired,
+  genreIds: PropTypes.arrayOf(PropTypes.number).isRequired,
 }
-
-export default Info

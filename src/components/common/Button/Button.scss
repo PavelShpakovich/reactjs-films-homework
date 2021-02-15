@@ -1,4 +1,4 @@
-button {
+.button {
   width: 110px;
   height: 35px;
   padding: 5px;
@@ -12,4 +12,26 @@ button {
   &:active {
     opacity: 0.95;
   }
+
+  @media (max-width: 599px) {
+    height: 32px;
+    width: 100px;
+    margin: 0 5px;
+  }
+}
+
+.primary {
+  background-color: rgb(24, 183, 236);
+  color: #fff;
+}
+
+.secondary {
+  background-color: inherit;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.info {
+  background-color: #f0f0f0;
+  color: rgb(24, 183, 236);
 }

@@ -1,52 +1,55 @@
-/*
- * Copyright © 2020 EPAM Systems, Inc. All Rights Reserved. All information contained herein is, and remains the
- * property of EPAM Systems, Inc. and/or its suppliers and is protected by international intellectual
- * property law. Dissemination of this information or reproduction of this material is strictly forbidden,
- * unless prior written permission is obtained from EPAM Systems, Inc
- */
-
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import PropTypes from 'prop-types'
+import { useHistory } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlayCircle } from '@fortawesome/free-solid-svg-icons'
-import Button from '../common/Button'
-import Info from '../common/Info'
-import MovieItemModal from './components/MovieItemModal'
-import { fetchFilmData } from '../../redux/actions/fetchFilmData'
+import { Button } from '../common/Button/Button'
+import { Info } from '../common/Info/Info'
+import { MovieItemModal } from './components/MovieItemModal/MovieItemModal'
 import { fetchTrailerData } from '../../redux/actions/fetchTrailer'
 import styles from './MovieItem.scss'
 
-const MovieItem = ({ film }) => {
+export const MovieItem = ({ overview, vote, title, genreIds, poster, id }) => {
   const dispatch = useDispatch()
+  const history = useHistory()
   const [isModal, setIsModal] = useState(false)
   const onModal = (setState) => setState((state) => !state)
   return (
     <div className={styles.container}>
-      {isModal && <MovieItemModal onModal={() => onModal(setIsModal)} film={film} />}
-      <div
-        className={styles.poster}
-        style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${film.poster_path})` }}
-      >
+      {isModal && (
+        <MovieItemModal
+          onModal={() => onModal(setIsModal)}
+          overview={overview}
+          vote={vote}
+          genreIds={genreIds}
+          id={id}
+          title={title}
+        />
+      )}
+      <div className={styles.poster} style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${poster})` }}>
         <div className={styles.poster__hover}>
           <FontAwesomeIcon
-            onClick={() => dispatch(fetchTrailerData(film.id))}
+            onClick={() => dispatch(fetchTrailerData(id))}
             className={styles.poster__hover_play}
             icon={faPlayCircle}
           />
           <span className={styles.poster__hover_text}>Watch Now</span>
-          <Button onClick={() => onModal(setIsModal)} className={styles.poster__hover_button}>
+          <Button onClick={() => onModal(setIsModal)} type="secondary">
             View Info
           </Button>
         </div>
       </div>
-      <Info onClick={() => dispatch(fetchFilmData(film.id))} className={styles} film={film} />
+      <Info onClick={() => history.push(`/details/${id}`)} type="info" genreIds={genreIds} title={title} vote={vote} />
     </div>
   )
 }
 
 MovieItem.propTypes = {
-  film: PropTypes.object.isRequired,
+  vote: PropTypes.number.isRequired,
+  genreIds: PropTypes.arrayOf(PropTypes.number).isRequired,
+  overview: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  poster: PropTypes.string,
+  id: PropTypes.number.isRequired,
 }
-
-export default MovieItem

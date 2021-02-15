@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal Should render and match snapshot with error 1`] = `
+<div
+  className="modal"
+  onClick={[Function]}
+>
+  <div
+    className="not_found"
+  >
+    Trailer not found
+  </div>
+</div>
+`;
+
+exports[`Modal Should render and match snapshot with key 1`] = `
+<div
+  className="modal"
+  onClick={[Function]}
+>
+  <iframe
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen={true}
+    className="frame"
+    frameBorder="0"
+    src="https://www.youtube.com/embed/key?autoplay=1"
+    title="youtube"
+  />
+</div>
+`;

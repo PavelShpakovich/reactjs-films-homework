@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound Should render and match snapshot 1`] = `
+<div
+  className="container"
+>
+  <span
+    className="error"
+  >
+    Error 404
+  </span>
+  <span
+    className="title"
+  >
+    Page not found
+  </span>
+  <a
+    className="link"
+    data-testid="not-found-link"
+    href="/"
+    onClick={[Function]}
+  >
+    Go Back
+  </a>
+</div>
+`;

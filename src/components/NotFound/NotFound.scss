@@ -1,0 +1,57 @@
+/*
+ * Copyright © 2020 EPAM Systems, Inc. All Rights Reserved. All information contained herein is, and remains the
+ * property of EPAM Systems, Inc. and/or its suppliers and is protected by international intellectual
+ * property law. Dissemination of this information or reproduction of this material is strictly forbidden,
+ * unless prior written permission is obtained from EPAM Systems, Inc
+ */
+
+.container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  font-size: 70px;
+  color: #888;
+
+  @media (max-width: 599px) {
+    font-size: 50px;
+  }
+}
+
+.error {
+  padding: 0 15px 0 0;
+  animation: type 0.5s alternate infinite;
+}
+
+.link {
+  padding: 0 10px;
+  margin: 10px 0 0 0;
+  font-size: 50px;
+  text-decoration: none;
+  border: 1px solid rgb(112, 112, 112);
+  border-radius: 10px;
+  background-color: #888;
+  color: #fff;
+
+  &:hover {
+    background-color: rgb(112, 112, 112);
+  }
+
+  @media (max-width: 599px) {
+    font-size: 35px;
+    padding: 0 5px;
+  }
+}
+
+@keyframes type {
+  from {
+    box-shadow: inset -5px 0 0 #888;
+  }
+
+  to {
+    box-shadow: inset -5px 0 0 transparent;
+  }
+}

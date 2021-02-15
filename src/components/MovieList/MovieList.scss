@@ -19,4 +19,15 @@
   font-weight: bold;
   color: rgba(0, 0, 0, 0.5);
   font-size: 32px;
+  animation: opacity 0.5s linear;
+}
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }

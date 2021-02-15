@@ -15,9 +15,19 @@
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.8);
+  z-index: 20;
 }
 
 .frame {
   width: 70vw;
   height: 45vw;
+}
+
+.not_found {
+  font-size: 48px;
+  color: #888;
+
+  @media (max-width: 599px) {
+    font-size: 40px;
+  }
 }

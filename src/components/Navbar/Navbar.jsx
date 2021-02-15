@@ -5,60 +5,47 @@
  * unless prior written permission is obtained from EPAM Systems, Inc
  */
 
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import className from 'classnames'
-import fetchMoviesData from '../../redux/actions/fetchMovies'
-import fetchGenresData from '../../redux/actions/fetchGenres'
 import { changeCategory } from '../../redux/actions/changeNavbar'
-import Select from './components/Select'
-import { navBtns } from '../../utils/constants'
-import getQueryCategory from '../../utils/getQueryCategory'
+import { navBtns } from '../../constants/data'
+import { Select } from './components/Select/Select'
+import { fetchGenresData } from '../../redux/actions/fetchGenres'
 import styles from './Navbar.scss'
-import { closeMovie } from '../../redux/actions/fetchFilmData'
 
-const Navbar = () => {
+export const Navbar = () => {
+  const history = useHistory()
   const { genres } = useSelector((state) => state.genres)
-  const { chosenCategory, chosenGenre } = useSelector((state) => state.navbar)
+  const { chosenCategory } = useSelector((state) => state.navbar)
   const dispatch = useDispatch()
-  const [genreQuery, setGenreQuery] = useState('')
-  const getGenreQuery = (id) => {
-    setGenreQuery(`&with_genres=${id}`)
-  }
   useEffect(() => {
     dispatch(fetchGenresData())
   }, [])
   return (
     <div className={styles.navbar}>
       <div className={styles.navbar__buttons}>
-        {navBtns.map((button, i) => {
-          const key = i
+        {Object.entries(navBtns).map(([name, path]) => {
           const classStyle = className(styles.navbar__buttons_button, {
-            [styles.active_button]: chosenCategory === key,
+            [styles.active_button]: chosenCategory === path,
           })
           return (
             <div
               className={classStyle}
               onClick={() => {
-                dispatch(changeCategory(key))
-                dispatch(closeMovie())
-                dispatch(
-                  fetchMoviesData({
-                    category: getQueryCategory(key),
-                    genre: chosenGenre !== 'Genre' ? genreQuery : '',
-                  }),
-                )
+                history.push('/')
+                dispatch(changeCategory(path))
               }}
-              key={key}
+              key={path}
+              testid="test"
             >
-              {button}
+              {name}
             </div>
           )
         })}
       </div>
-      <Select getGenreQuery={getGenreQuery} categoryQuery={getQueryCategory(chosenCategory)} genres={genres} />
+      <Select genres={genres} />
     </div>
   )
 }
-
-export default Navbar
