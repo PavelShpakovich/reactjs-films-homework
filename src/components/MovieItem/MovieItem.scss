@@ -12,11 +12,7 @@
   width: 100%;
   height: 100%;
   border-radius: 10px;
-  background-color: #ffffff;
-
-  &:nth-child(1n + 13) {
-    display: none;
-  }
+  background-color: #fff;
 }
 
 .poster {
@@ -24,12 +20,8 @@
   position: relative;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  background-size: 100%;
+  background-size: cover;
   background-color: grey;
-
-  &:hover .poster__hover{
-    display: flex;
-  }
 
   &__hover {
     display: none;
@@ -67,38 +59,8 @@
       color: #fff;
     }
   }
-}
 
-.info {
-  flex: 1;
-  cursor: pointer;
-
-  &__about {
-    padding: 30px 20px 5px 20px;
+  &:hover &__hover {
     display: flex;
-    justify-content: space-between;
-
-    &_title {
-      font-size: 24px;
-      padding-right: 10px;
-      font-weight: bold;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    &_vote {
-      font-weight: bold;
-      color: rgb(24, 183, 236);
-      padding: 1px 7px;
-      border: 2px solid rgb(24, 183, 236);
-      border-radius: 5px;
-    }
-  }
-
-  &__genres {
-    padding-left: 20px;
-    color: rgb(24, 183, 236);
-    font-weight: 800;
   }
 }

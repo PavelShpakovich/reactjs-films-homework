@@ -1,0 +1,100 @@
+/*
+ * Copyright © 2020 EPAM Systems, Inc. All Rights Reserved. All information contained herein is, and remains the
+ * property of EPAM Systems, Inc. and/or its suppliers and is protected by international intellectual
+ * property law. Dissemination of this information or reproduction of this material is strictly forbidden,
+ * unless prior written permission is obtained from EPAM Systems, Inc
+ */
+
+.select {
+  display: inline-block;
+  position: relative;
+  font-size: 20px;
+  color: rgb(24, 183, 236);
+  background-color: rgb(240, 240, 240);
+  cursor: pointer;
+
+  @media (max-width: 599px) {
+    width: 100%;
+  }
+
+  &__button {
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 599px) {
+      margin: 5px 0 0 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      height: 32px;
+      font-size: 15px;
+      line-height: 32px;
+      text-align: center;
+      border-radius: 10px;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.15);
+    }
+
+    &_text {
+      position: relative;
+    }
+
+    &_arrow {
+      width: 12px;
+      height: 12px;
+      transition: transform 0.1s linear;
+
+      @media (max-width: 599px) {
+        margin: 0 5px;
+      }
+    }
+  }
+
+  &__list {
+    position: absolute;
+    width: max-content;
+    height: 215px;
+    overflow-y: auto;
+    z-index: 10;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+
+    @media (max-width: 599px) {
+      width: 100%;
+      top: 40px;
+    }
+  }
+
+  &__item {
+    padding: 5px 5px;
+    height: 30px;
+
+    @media (max-width: 599px) {
+      padding: 5px 10px;
+      font-size: 15px;
+    }
+
+    &:hover {
+      background-color: rgb(24, 183, 236);
+      color: #fff;
+    }
+
+    &_active {
+      background-color: rgb(24, 183, 236);
+      color: #fff;
+    }
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+  }
+}
+
+.rotateArrow {
+  transform: rotate(-180deg);
+}

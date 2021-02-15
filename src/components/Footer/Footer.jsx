@@ -8,11 +8,10 @@
 import React from 'react'
 import styles from './Footer.scss'
 
-export const Footer = () => {
-  return (
-    <div className={styles.container}>
-      <span className={styles.title}>FILMS</span>
-      <span className={styles.copyright}>Copyright © 2020 FILMS. PAVEL DUBINA</span>
-    </div>
-  )
-}
+export const Footer = () => (
+  <div className={styles.container}>
+    <span className={styles.title}>FILMS</span>
+    <span className={styles.copyright}>Copyright © 2020 FILMS.</span>
+    <span className={styles.copyright}>PAVEL DUBINA</span>
+  </div>
+)

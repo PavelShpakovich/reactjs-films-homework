@@ -1,33 +1,35 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Stars } from '../common/Stars'
-import { Raiting } from '../common/Raiting'
-import timeFormat from '../../utils/timeFormat'
+import { Raiting } from '../common/Raiting/Raiting'
+import { getTimeFormat } from '../../utils/getTimeFormat'
 import styles from './MovieHeadInfo.scss'
 
-export const MovieHeadInfo = ({ res }) => {
-  return (
-    <div className={styles.description}>
-      <p className={styles.description__title}>{res.original_title}</p>
-      <div className={styles.description__genres}>
-        {res.genres.map((genre) => {
-          return (
-            <span className={styles.description__genres_name} key={genre.id}>
-              {genre.name}
-            </span>
-          )
-        })}
-        <span className={styles.description__genres_name}>|</span>
-        <span className={styles.description__genres_name}>{timeFormat(res.runtime)}</span>
-      </div>
-      <div className={styles.description__raiting}>
-        <Stars className={styles.description__raiting_star} res={res} />
-        <Raiting className={styles.description__raiting_vote} res={res} />
-      </div>
+export const MovieHeadInfo = ({ vote, runtime, genres, title }) => (
+  <div className={styles.description}>
+    <p className={styles.description__title}>{title}</p>
+    <div className={styles.description__genres}>
+      {genres.map((genre) => (
+        <span className={styles.description__genres_name} key={genre.id}>
+          {genre.name}
+        </span>
+      ))}
+      <span className={styles.description__genres_name}>|</span>
+      <span className={styles.description__genres_name}>{getTimeFormat(runtime)}</span>
     </div>
-  )
-}
+    <div className={styles.description__raiting}>
+      <Raiting className={styles.description__raiting_vote} withStars vote={vote} />
+    </div>
+  </div>
+)
 
 MovieHeadInfo.propTypes = {
-  res: PropTypes.object.isRequired,
+  vote: PropTypes.number.isRequired,
+  runtime: PropTypes.number.isRequired,
+  genres: PropTypes.arrayOf(
+    PropTypes.PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+    }),
+  ).isRequired,
+  title: PropTypes.string.isRequired,
 }

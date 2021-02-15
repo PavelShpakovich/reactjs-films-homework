@@ -5,39 +5,58 @@
  * unless prior written permission is obtained from EPAM Systems, Inc
  */
 
-import React, { useState } from 'react'
-import { MovieHeadInfo } from '../MovieHeadInfo'
-import { Button } from '../common/Button'
-import { Search } from './../common/Search'
-import responce from './res.json'
+import { useParams } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { MovieHeadInfo } from '../MovieHeadInfo/MovieHeadInfo'
+import { Button } from '../common/Button/Button'
+import { fetchTrailerData } from '../../redux/actions/fetchTrailer'
+import { fetchFilmData } from '../../redux/actions/fetchFilmData'
 import styles from './MovieHead.scss'
 
 export const MovieHead = () => {
-  const res = responce
+  const dispatch = useDispatch()
+  const { film } = useSelector((state) => state.info)
   const [isInfo, setIsInfo] = useState(false)
   const onViewInfo = () => {
     setIsInfo((state) => !state)
   }
+  const { id } = useParams()
+  useEffect(
+    () =>
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      }),
+    [film],
+  )
+  useEffect(() => dispatch(fetchFilmData(id)), [id])
 
   return (
-    <div
-      className={styles.container}
-      style={{ backgroundImage: `url('https://image.tmdb.org/t/p/original${res.poster_path}')` }}
-    >
-      <div className={styles.header}>
-        <span className={styles.header__title}>FILMS</span>
-        <Search />
-      </div>
-      <div className={styles.footer}>
-        <MovieHeadInfo res={res} />
-        <div className={styles.footer__controls}>
-          {isInfo && <p>{res.overview}</p>}
-          <Button className={styles.watch_button}>Watch Now</Button>
-          <Button className={styles.info_button} onClick={onViewInfo}>
-            View Info
-          </Button>
+    !!Object.keys(film).length && (
+      <div
+        className={styles.container}
+        style={{ backgroundImage: `url('https://image.tmdb.org/t/p/original${film.backdrop_path}')` }}
+      >
+        <div className={styles.footer}>
+          <MovieHeadInfo
+            title={film.original_title}
+            genres={film.genres}
+            runtime={film.runtime}
+            vote={film.vote_average}
+            film={film}
+          />
+          <div className={styles.footer__controls}>
+            {isInfo && <p>{film.overview}</p>}
+            <Button type="primary" onClick={() => dispatch(fetchTrailerData(film.id))}>
+              Watch Now
+            </Button>
+            <Button type="info" onClick={onViewInfo}>
+              View Info
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
+    )
   )
 }

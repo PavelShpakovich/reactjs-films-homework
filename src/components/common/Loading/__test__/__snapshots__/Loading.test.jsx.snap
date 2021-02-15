@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading Should render and match snapshot 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="loading"
+  >
+    <div
+      className="lds_ellipsis"
+    >
+      <div />
+      <div />
+      <div />
+      <div />
+    </div>
+    <span
+      className="text"
+    >
+      Loading
+    </span>
+  </div>
+</div>
+`;

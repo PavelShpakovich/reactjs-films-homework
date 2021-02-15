@@ -5,31 +5,47 @@
  * unless prior written permission is obtained from EPAM Systems, Inc
  */
 
-import React, { useState } from 'react'
-import { Select } from '../common/Select'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 import className from 'classnames'
+import { changeCategory } from '../../redux/actions/changeNavbar'
+import { navBtns } from '../../constants/data'
+import { Select } from './components/Select/Select'
+import { fetchGenresData } from '../../redux/actions/fetchGenres'
 import styles from './Navbar.scss'
-import response from '../../utils/genres.json'
-import { navBtns } from './../../utils/constants'
 
 export const Navbar = () => {
-  const [active, setActive] = useState(0)
+  const history = useHistory()
+  const { genres } = useSelector((state) => state.genres)
+  const { chosenCategory } = useSelector((state) => state.navbar)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchGenresData())
+  }, [])
   return (
     <div className={styles.navbar}>
       <div className={styles.navbar__buttons}>
-        {navBtns.map((button, i) => {
-          const key = i
+        {Object.entries(navBtns).map(([name, path]) => {
           const classStyle = className(styles.navbar__buttons_button, {
-            [styles.active_button]: active === key,
+            [styles.active_button]: chosenCategory === path,
           })
           return (
-            <div className={classStyle} onClick={() => setActive(key)} key={key}>
-              {button}
+            <div
+              className={classStyle}
+              onClick={() => {
+                history.push('/')
+                dispatch(changeCategory(path))
+              }}
+              key={path}
+              testid="test"
+            >
+              {name}
             </div>
           )
         })}
-        <Select genres={response.genres} />
       </div>
+      <Select genres={genres} />
     </div>
   )
 }

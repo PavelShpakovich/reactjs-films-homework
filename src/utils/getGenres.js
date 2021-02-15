@@ -5,17 +5,8 @@
  * unless prior written permission is obtained from EPAM Systems, Inc
  */
 
-import responce from './genres.json'
-
-const getGenres = (ids) => {
-  return responce.genres
-    .filter((genre) => {
-      for (let id of ids) {
-        if (genre.id === id) return genre
-      }
-    })
+export const getGenres = (ids, genres) =>
+  genres
+    .filter((genre) => ids.includes(genre.id))
     .map((genre) => genre.name)
     .join(', ')
-}
-
-export default getGenres
